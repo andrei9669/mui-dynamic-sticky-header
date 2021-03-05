@@ -1,11 +1,12 @@
-import { TableCell, TableHead, TableRow } from '@material-ui/core';
+import { TableRow } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 
-const StyledTableCell = styled(TableCell)<{
+const StyledTableCell = styled.th<{
   cellColor: string;
   stickyHeight: number;
 }>`
+  position: sticky;
   ${({ cellColor, stickyHeight }) => css`
     background-color: ${cellColor};
     top: ${stickyHeight}px;
@@ -91,8 +92,8 @@ const TableHeadComponent: React.FC = () => {
   };
 
   return (
-    <TableHead>
-      <TableRow ref={stateRefs[0]}>
+    <thead>
+      <tr ref={stateRefs[0]}>
         <StyledTableCell
           stickyHeight={0}
           colSpan={6}
@@ -120,7 +121,7 @@ const TableHeadComponent: React.FC = () => {
         >
           head2
         </StyledTableCell>
-      </TableRow>
+      </tr>
       <TableRow>
         {cells.map((cell, i) => (
           <StyledTableCell
@@ -132,7 +133,7 @@ const TableHeadComponent: React.FC = () => {
           >{`cell${cell}`}</StyledTableCell>
         ))}
       </TableRow>
-    </TableHead>
+    </thead>
   );
 };
 
