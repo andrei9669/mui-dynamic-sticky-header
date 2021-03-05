@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { CssBaseline, NoSsr, StylesProvider } from '@material-ui/core';
+import React, { useMemo } from 'react';
+import { ThemeProvider } from 'styled-components';
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/styles';
 
-function App() {
+import TableContent from './app/components/TableContent/TableContent';
+import createTheme from './theme';
+
+const App: React.FC = () => {
+  const theme = useMemo(() => createTheme(), []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <CssBaseline />
+      <NoSsr>
+        <StylesProvider injectFirst>
+          <MuiThemeProvider theme={theme}>
+            <ThemeProvider theme={theme}>
+              <TableContent />
+            </ThemeProvider>
+          </MuiThemeProvider>
+        </StylesProvider>
+      </NoSsr>
+    </>
   );
-}
+};
 
 export default App;
